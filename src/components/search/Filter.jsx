@@ -9,12 +9,12 @@ const Filter = ({ title }) => {
   };
 
   return (
-    <div
+    <input
       className={isActive ? "filter filter-active" : "filter"}
-      onClick={() => handleClick()}
-    >
-      {title}
-    </div>
+      onClick={handleClick}
+      type="button"
+      value={title}
+    />
   );
 };
 
