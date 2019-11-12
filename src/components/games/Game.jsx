@@ -9,9 +9,11 @@ function Game({ title, streams }) {
           <div className="list-element">
             <div className="list-element-inner">
               <div className="list-element-image"></div>
-              <div className="list-element-counter">Counter</div>
+              <div className="list-element-counter">{stream.counter}</div>
             </div>
-            <h2>{stream.title}</h2>
+            <div className="list-element-title">
+              <h2>{stream.title}</h2>
+            </div>
           </div>
         ))}
       </div>

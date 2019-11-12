@@ -3,16 +3,24 @@ import Game from "./Game";
 
 const streams = [
   {
-    title: "League of legends #1"
+    title: "League of legends #1",
+    counter: 3000
   },
   {
-    title: "League of legends #2"
+    title: "League of legends #2",
+    counter: 3000
   },
   {
-    title: "League of legends #3"
+    title: "League of legends #3",
+    counter: 3000
   },
   {
-    title: "League of legends League of legends League of legends #4"
+    title: "League of legends League of legends League of legends #4",
+    counter: 3000
+  },
+  {
+    title: "League of legends League of legends League of legends #4",
+    counter: 3000
   }
 ];
 
