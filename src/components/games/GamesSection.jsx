@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Game from "./Game";
+import { getTopGamesAction } from "../../store/actions/twitch";
 
 const streams = [
   {
@@ -25,11 +27,20 @@ const streams = [
 ];
 
 function GamesSection() {
-  return (
-    <div className="games-section full-width">
-      <Game title="League of legends" streams={streams}></Game>
-    </div>
-  );
+  const games = useSelector(state => state.games.topGames);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTopGamesAction());
+  }, []);
+
+  const gamesList = games.map(data => (
+    <Game title={data.game.name} streams={streams} />
+  ));
+
+  console.log(gamesList);
+
+  return <div className="games-section full-width">{gamesList}</div>;
 }
 
 export default GamesSection;
