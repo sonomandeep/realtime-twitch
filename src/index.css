@@ -136,6 +136,7 @@ h2 {
 }
 
 .list-wrapper {
+  margin-bottom: 50px;
 }
 
 .streams-list {
@@ -157,22 +158,19 @@ h2 {
 }
 
 .list-element-inner {
-  position: relative;
   margin-bottom: 10px;
 }
 
 .list-element-image {
   background-color: var(--low-contrast-color);
+  border-radius: 10px;
+  width: 300px;
   height: 150px;
 }
 
 .list-element-counter {
-  position: absolute;
-  padding: 10px 16px;
-  bottom: 0;
-  right: 0;
-  background-color: var(--low-contrast-color);
-  color: var(--white-color);
+  padding: 10px 0;
+  color: var(--black-text-color);
 }
 
 .list-element-title {
