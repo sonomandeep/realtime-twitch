@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Game from "./Game";
 import { getTopGamesAction } from "../../store/actions/twitch";
 import uuid from "uuid/v4";
+import GamesLoading from "./GamesLoading";
 
 function GamesSection() {
   const games = useSelector(state => state.games.topGames);
@@ -17,7 +18,11 @@ function GamesSection() {
     <Game title={data.name} id={data.id} key={uuid()} />
   ));
 
-  return <div className="games-section full-width">{gamesList}</div>;
+  return (
+    <div className="games-section full-width">
+      {isLoading ? <GamesLoading /> : gamesList}
+    </div>
+  );
 }
 
 export default GamesSection;

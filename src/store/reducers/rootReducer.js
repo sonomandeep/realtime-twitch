@@ -7,7 +7,7 @@ import {
 } from "../constants";
 const initialState = {
   search: { filters: [] },
-  games: { topGames: [], isLoading: false },
+  games: { topGames: [], isLoading: true },
   streams: {}
 };
 

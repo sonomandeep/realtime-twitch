@@ -29,11 +29,13 @@ const getTopGamesAction = () => async dispatch => {
 
 const getGameStreamsAction = id => async (dispatch, getState) => {
   const state = getState();
+  dispatch(setGamesFetchLoading(true));
   const { data } = await getGameStreams(id, state.search.filters);
   dispatch({
     type: SET_GAME_STREAMS,
     payload: { streams: [...data.data], game_id: id }
   });
+  dispatch(setGamesFetchLoading(false));
 };
 
 export { getTopGamesAction, setFilterAction, removeFilterAction };
