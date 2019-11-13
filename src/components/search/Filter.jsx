@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
+import {
+  setFilterAction,
+  removeFilterAction
+} from "../../store/actions/twitch";
 
-const Filter = ({ title }) => {
+const Filter = ({ title, filter }) => {
   const [isActive, setActive] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClick = () => {
     setActive(!isActive);
   };
+
+  useEffect(() => {
+    isActive
+      ? dispatch(setFilterAction(filter))
+      : dispatch(removeFilterAction(filter));
+  }, [isActive]);
 
   return (
     <input
@@ -20,11 +32,7 @@ const Filter = ({ title }) => {
 
 Filter.propTypes = {
   title: PropTypes.string.isRequired,
-  isActive: PropTypes.bool
-};
-
-Filter.defaultProps = {
-  isActive: false
+  filter: PropTypes.string.isRequired
 };
 
 export default Filter;

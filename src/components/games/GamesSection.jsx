@@ -6,6 +6,7 @@ import uuid from "uuid/v4";
 
 function GamesSection() {
   const games = useSelector(state => state.games.topGames);
+  const isLoading = useSelector(state => state.games.isLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -164,7 +164,7 @@ h4 {
 .streams-list {
   margin-top: 20px;
   overflow-x: scroll;
-  overflow-y: hidden;
+  overflow-y: visible;
   white-space: nowrap;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -175,9 +175,10 @@ h4 {
 }
 
 .list-element {
+  box-shadow: 0px 4px 10px 0px var(--light-gray-color);
   background-color: var(--light-gray-color);
   border-radius: 10px;
-  min-width: 300px;
+  width: 300px;
   margin-right: 40px;
 }
 
@@ -185,19 +186,11 @@ h4 {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.list-element:active {
-  background-color: blue;
-}
-
 .list-element-image {
   background-color: var(--low-contrast-color);
   border-radius: 10px;
   width: 300px;
   height: 150px;
-}
-
-.list-element > .list-element-image:focus {
-  background-color: blue;
 }
 
 .list-element-info {

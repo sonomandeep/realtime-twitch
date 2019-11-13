@@ -7,11 +7,8 @@ const SearchSection = () => {
     <div className="fullWidth searchSectionContainer">
       <SearchField />
       <div className="filters">
-        <Filter title="Italiano" isActive />
-        <Filter title="Inglese" />
-        <Filter title="Ordine crescente" />
-        <Filter title="Ordine decrescente" />
-        <Filter title="Ordine alfabetico" />
+        <Filter title="Italiano" filter="language=it" />
+        <Filter title="Inglese" filter="language=en" />
       </div>
     </div>
   );

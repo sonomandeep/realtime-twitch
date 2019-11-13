@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import uuid from "uuid/v4";
 import DragScroll from "react-dragscroll";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/opacity.css";
 
 function Game({ title, id }) {
   const streams = useSelector(state => state.streams[id]) || [];
@@ -10,8 +11,6 @@ function Game({ title, id }) {
   const getImageUrl = thumbnail_url => {
     return thumbnail_url.replace("{width}", 300).replace("{height}", 150);
   };
-
-  streams.map(stream => console.log(getImageUrl(stream.thumbnail_url)));
 
   return (
     <div className="list-wrapper">
@@ -27,6 +26,7 @@ function Game({ title, id }) {
               <LazyLoadImage
                 src={getImageUrl(stream.thumbnail_url)}
                 className="list-element-image"
+                effect="opacoty"
               />
             </div>
             <div className="list-element-info">

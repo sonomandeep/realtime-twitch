@@ -1,10 +1,5 @@
-# curl -H 'Accept: application/vnd.twitchtv.v5+json' \
-# -H 'Client-ID: 0m7mjx5gk0km1ucct94bbafd0qub1s' \
-# -X GET 'https://api.twitch.tv/kraken/games/top'
-
-# curl -H 'Accept: application/vnd.twitchtv.v5+json' \
-# -H 'Client-ID: 0m7mjx5gk0km1ucct94bbafd0qub1s' \
-# -X GET 'https://api.twitch.tv/kraken/streams?language=it'
+# curl -H 'Client-ID: 0m7mjx5gk0km1ucct94bbafd0qub1s' \
+# -X GET 'https://api.twitch.tv/helix/streams?game_id=21779'
 
 curl -H 'Client-ID: 0m7mjx5gk0km1ucct94bbafd0qub1s' \
--X GET 'https://api.twitch.tv/helix/streams?game_id=21779'
+-X GET 'https://api.twitch.tv/helix/games/top'
