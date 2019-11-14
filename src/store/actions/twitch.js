@@ -21,7 +21,10 @@ const setSearchError = payload => dispatch => {
 const searchGameAction = gameName => async dispatch => {
   const { data } = await searchGame(gameName);
   if (isObjectEmpty(data.data)) dispatch(setSearchError(true));
-  else dispatch({ type: SET_SEARCHED_GAME, payload: { ...data.data[0] } });
+  else {
+    dispatch({ type: SET_SEARCHED_GAME, payload: { ...data.data[0] } });
+    dispatch(getGameStreamsAction(data.data[0].id));
+  }
 };
 
 const setFilterAction = filter => (dispatch, getState) => {

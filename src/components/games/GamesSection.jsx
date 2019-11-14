@@ -23,9 +23,9 @@ function GamesSection() {
   }, [searchedGame.error]);
 
   const getContent = () => {
-    if (!isObjectEmpty(searchedGame.game)) return <SearchedGame />;
     if (isLoading) return <GamesLoading />;
-    else return gamesList;
+    if (!isObjectEmpty(searchedGame.game)) return <SearchedGame />;
+    return gamesList;
   };
 
   const cancelGameNotFoundPopup = () => {
