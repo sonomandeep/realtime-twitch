@@ -5,16 +5,23 @@ import {
   SET_FILTER,
   REMOVE_FILTER,
   SET_GAME_FETCH_LOADING,
-  SET_SEARCHED_GAME
+  SET_SEARCHED_GAME,
+  SET_SEARCH_ERROR
 } from "../constants";
+import { isObjectEmpty } from "../../helpers";
 
 const setGamesFetchLoading = isLoading => dispatch => {
   dispatch({ type: SET_GAME_FETCH_LOADING, payload: isLoading });
 };
 
+const setSearchError = payload => dispatch => {
+  dispatch({ type: SET_SEARCH_ERROR, payload });
+};
+
 const searchGameAction = gameName => async dispatch => {
   const { data } = await searchGame(gameName);
-  dispatch({ type: SET_SEARCHED_GAME, payload: { ...data.data[0] } });
+  if (isObjectEmpty(data.data)) dispatch(setSearchError(true));
+  else dispatch({ type: SET_SEARCHED_GAME, payload: { ...data.data[0] } });
 };
 
 const setFilterAction = filter => (dispatch, getState) => {
@@ -50,5 +57,6 @@ export {
   searchGameAction,
   getTopGamesAction,
   setFilterAction,
-  removeFilterAction
+  removeFilterAction,
+  setSearchError
 };

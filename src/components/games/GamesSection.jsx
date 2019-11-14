@@ -1,15 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Game from "./Game";
-import { getTopGamesAction } from "../../store/actions/twitch";
+import { getTopGamesAction, setSearchError } from "../../store/actions/twitch";
 import uuid from "uuid/v4";
 import GamesLoading from "./GamesLoading";
 import { isObjectEmpty } from "../../helpers";
-import { SearchedGame } from "../search";
+import { SearchedGame, GameNotFound } from "../search";
 
 function GamesSection() {
+  const [showError, setShowError] = useState(false);
   const games = useSelector(state => state.games.topGames);
   const searchedGame = useSelector(state => state.games.searchedGame);
+  const searchedGameError = useSelector(state => state.games.searchedGameError);
   const isLoading = useSelector(state => state.games.isLoading);
   const dispatch = useDispatch();
 
@@ -17,17 +19,31 @@ function GamesSection() {
     dispatch(getTopGamesAction());
   }, []);
 
+  useEffect(() => {
+    setShowError(searchedGameError);
+  }, [searchedGameError]);
+
   const getContent = () => {
     if (!isObjectEmpty(searchedGame)) return <SearchedGame />;
     if (isLoading) return <GamesLoading />;
     else return gamesList;
   };
 
+  const cancelGameNotFoundPopup = () => {
+    setShowError(false);
+    dispatch(setSearchError(false));
+  };
+
   const gamesList = games.map(data => (
     <Game title={data.name} id={data.id} key={uuid()} />
   ));
 
-  return <div className="games-section full-width">{getContent()}</div>;
+  return (
+    <div className="games-section full-width">
+      {showError && <GameNotFound cancel={cancelGameNotFoundPopup} />}
+      {getContent()}
+    </div>
+  );
 }
 
 export default GamesSection;
