@@ -5,7 +5,8 @@ import {
   REMOVE_FILTER,
   SET_GAME_FETCH_LOADING,
   SET_SEARCHED_GAME,
-  SET_SEARCH_ERROR
+  SET_SEARCH_ERROR,
+  REMOVE_SEARCHED_GAME
 } from "../constants";
 
 const initialState = {
@@ -30,6 +31,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
           ...state.games,
           searchedGame: { ...state.games.searchedGame, game: { ...payload } }
         }
+      };
+
+    case REMOVE_SEARCHED_GAME:
+      return {
+        ...state,
+        games: { ...state.games, searchedGame: initialState.games.searchedGame }
       };
 
     case SET_SEARCH_ERROR:

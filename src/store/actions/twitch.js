@@ -6,7 +6,8 @@ import {
   REMOVE_FILTER,
   SET_GAME_FETCH_LOADING,
   SET_SEARCHED_GAME,
-  SET_SEARCH_ERROR
+  SET_SEARCH_ERROR,
+  REMOVE_SEARCHED_GAME
 } from "../constants";
 import { isObjectEmpty } from "../../helpers";
 
@@ -25,6 +26,10 @@ const searchGameAction = gameName => async dispatch => {
     dispatch({ type: SET_SEARCHED_GAME, payload: { ...data.data[0] } });
     dispatch(getGameStreamsAction(data.data[0].id));
   }
+};
+
+const removeSearchedGame = () => dispatch => {
+  dispatch({ type: REMOVE_SEARCHED_GAME });
 };
 
 const setFilterAction = filter => (dispatch, getState) => {
@@ -61,5 +66,6 @@ export {
   getTopGamesAction,
   setFilterAction,
   removeFilterAction,
-  setSearchError
+  setSearchError,
+  removeSearchedGame
 };
