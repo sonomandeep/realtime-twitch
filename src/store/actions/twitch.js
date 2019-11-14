@@ -17,8 +17,10 @@ const setFilterAction = filter => (dispatch, getState) => {
   state.games.topGames.forEach(game => dispatch(getGameStreamsAction(game.id)));
 };
 
-const removeFilterAction = filter => dispatch => {
+const removeFilterAction = filter => (dispatch, getState) => {
+  const state = getState();
   dispatch({ type: REMOVE_FILTER, payload: filter });
+  state.games.topGames.forEach(game => dispatch(getGameStreamsAction(game.id)));
 };
 
 const getTopGamesAction = () => async dispatch => {
