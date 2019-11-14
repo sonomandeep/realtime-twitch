@@ -9,7 +9,7 @@ function SearchField() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    dispatch(searchGameAction(query));
+    if (query.trim()) dispatch(searchGameAction(query));
   };
 
   return (
@@ -22,11 +22,16 @@ function SearchField() {
         id="searchField"
         type="text"
         name="cerca"
-        placeholder="Cerca..."
+        placeholder="Cerca un gioco..."
         value={query}
         onChange={event => setQuery(event.target.value)}
       />
-      <FaSearch size="18px" color="#6441a5" id="searchIcon" />
+      <FaSearch
+        size="18px"
+        color="#6441a5"
+        id="searchIcon"
+        onClick={handleSubmit}
+      />
     </form>
   );
 }

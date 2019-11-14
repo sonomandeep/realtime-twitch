@@ -12,8 +12,7 @@ const initialState = {
   search: { filters: [] },
   games: {
     topGames: [],
-    searchedGame: {},
-    searchedGameError: false,
+    searchedGame: { game: {}, error: false, streams: [] },
     isLoading: true
   },
   streams: {}
@@ -27,13 +26,19 @@ const rootReducer = (state = initialState, { type, payload }) => {
     case SET_SEARCHED_GAME:
       return {
         ...state,
-        games: { ...state.games, searchedGame: { ...payload } }
+        games: {
+          ...state.games,
+          searchedGame: { ...state.games.searchedGame, game: { ...payload } }
+        }
       };
 
     case SET_SEARCH_ERROR:
       return {
         ...state,
-        games: { ...state.games, searchedGameError: payload }
+        games: {
+          ...state.games,
+          searchedGame: { ...state.games.searchedGame, error: payload }
+        }
       };
 
     case SET_FILTER:

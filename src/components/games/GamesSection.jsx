@@ -11,7 +11,6 @@ function GamesSection() {
   const [showError, setShowError] = useState(false);
   const games = useSelector(state => state.games.topGames);
   const searchedGame = useSelector(state => state.games.searchedGame);
-  const searchedGameError = useSelector(state => state.games.searchedGameError);
   const isLoading = useSelector(state => state.games.isLoading);
   const dispatch = useDispatch();
 
@@ -20,11 +19,11 @@ function GamesSection() {
   }, []);
 
   useEffect(() => {
-    setShowError(searchedGameError);
-  }, [searchedGameError]);
+    setShowError(searchedGame.error);
+  }, [searchedGame.error]);
 
   const getContent = () => {
-    if (!isObjectEmpty(searchedGame)) return <SearchedGame />;
+    if (!isObjectEmpty(searchedGame.game)) return <SearchedGame />;
     if (isLoading) return <GamesLoading />;
     else return gamesList;
   };
