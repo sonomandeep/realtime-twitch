@@ -3,11 +3,13 @@ import {
   SET_GAME_STREAMS,
   SET_FILTER,
   REMOVE_FILTER,
-  SET_GAME_FETCH_LOADING
+  SET_GAME_FETCH_LOADING,
+  SET_SEARCHED_GAME
 } from "../constants";
+
 const initialState = {
   search: { filters: [] },
-  games: { topGames: [], isLoading: true },
+  games: { topGames: [], searchedGame: {}, isLoading: true },
   streams: {}
 };
 
@@ -15,6 +17,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_GAME_FETCH_LOADING:
       return { ...state, games: { ...state.games, isLoading: payload } };
+
+    case SET_SEARCHED_GAME:
+      return {
+        ...state,
+        games: { ...state.games, searchedGame: { ...payload } }
+      };
 
     case SET_FILTER:
       return {

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { FaSearch } from "react-icons/fa";
+import { searchGameAction } from "../../store/actions/twitch";
 
 function SearchField() {
   const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(query);
+    dispatch(searchGameAction(query));
   };
 
   return (

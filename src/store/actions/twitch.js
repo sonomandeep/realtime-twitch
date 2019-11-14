@@ -1,14 +1,20 @@
-import { getGames, getGameStreams } from "../../services/api";
+import { getGames, getGameStreams, searchGame } from "../../services/api";
 import {
   SET_TOP_GAMES,
   SET_GAME_STREAMS,
   SET_FILTER,
   REMOVE_FILTER,
-  SET_GAME_FETCH_LOADING
+  SET_GAME_FETCH_LOADING,
+  SET_SEARCHED_GAME
 } from "../constants";
 
 const setGamesFetchLoading = isLoading => dispatch => {
   dispatch({ type: SET_GAME_FETCH_LOADING, payload: isLoading });
+};
+
+const searchGameAction = gameName => async dispatch => {
+  const { data } = await searchGame(gameName);
+  dispatch({ type: SET_SEARCHED_GAME, payload: { ...data.data[0] } });
 };
 
 const setFilterAction = filter => (dispatch, getState) => {
@@ -40,4 +46,9 @@ const getGameStreamsAction = id => async (dispatch, getState) => {
   dispatch(setGamesFetchLoading(false));
 };
 
-export { getTopGamesAction, setFilterAction, removeFilterAction };
+export {
+  searchGameAction,
+  getTopGamesAction,
+  setFilterAction,
+  removeFilterAction
+};

@@ -18,6 +18,10 @@ const formatParams = params => {
   return result;
 };
 
+const searchGame = gameName => {
+  return twitch.get(`games?name=${gameName}`);
+};
+
 const getGames = () => {
   return twitch.get("games/top");
 };
@@ -26,4 +30,4 @@ const getGameStreams = (id, params = []) => {
   return twitch.get(`streams?game_id=${id}${formatParams(params)}`);
 };
 
-export { getGames, getGameStreams };
+export { getGames, getGameStreams, searchGame };
